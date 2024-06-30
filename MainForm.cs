@@ -26,6 +26,7 @@ namespace Working_Reminder
         int mTempWork = 0;
         int mOtherAppTime = 0;
         int mWorkingTime = 0;
+        int mPCTime = 0;
         int mTimer25m = 0;
         int _1MIN = 60;
         int _5MIN = 300;
@@ -65,7 +66,6 @@ namespace Working_Reminder
         {
             btnCheckin.Visible = true;
             btnRelax.Visible = true;
-            txtHistory.Visible = false;
         }
 
         private bool isWorkingApp(string appName)
@@ -73,6 +73,44 @@ namespace Working_Reminder
             if (appName.Contains("terminal")) return true;
             if (appName.Contains("Forex Simulator")) return true;
             return false;
+        }
+        private void CreateMask()
+        {
+            foreach (var screen in Screen.AllScreens)
+            {
+                Form maskForm = new Form();
+                maskForm.FormBorderStyle = FormBorderStyle.None;
+                maskForm.WindowState = FormWindowState.Maximized;
+                maskForm.TopMost = true;
+                maskForm.BackColor = Color.Black;
+                maskForm.Opacity = 0.8; // Độ trong suốt
+                maskForm.ShowInTaskbar = false;
+                maskForm.StartPosition = FormStartPosition.Manual;
+                maskForm.Location = screen.Bounds.Location;
+                maskForm.Size = screen.Bounds.Size;
+                maskForm.MouseClick += (sender, e) => this.BringToFront();
+                maskForm.Show();
+            }
+
+            // Đảm bảo main form luôn ở trên tất cả các mask form
+            this.TopMost = true;
+            this.BringToFront();
+        }
+
+        private void RemoveMasks()
+        {
+            var masksToRemove = new List<Form>();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form != this && form.Opacity == 0.8 && form.BackColor == Color.Black)
+                {
+                    masksToRemove.Add(form);
+                }
+            }
+            foreach (Form mask in masksToRemove)
+            {
+                mask.Close();
+            }
         }
 
         private void updateHMI()
@@ -82,10 +120,11 @@ namespace Working_Reminder
                 if (ShowInTaskbar == true)
                 {
                     ShowInTaskbar = false;
-                    User32Tool.StopFlash(this);
+                    WindowState = FormWindowState.Normal;
                     Width = 0;
                     Height = 0;
                     Location = mOldLocation;
+                    RemoveMasks();
                 }
                 if (mWorkState == WorkState.Relax)
                 {
@@ -109,22 +148,25 @@ namespace Working_Reminder
                 // Create Notification
                 if (ShowInTaskbar == false)
                 {
-                    txtHistory.Visible = true;
                     ShowInTaskbar = true;
                     mOldLocation = Location;
-
-                    User32Tool.Flash(this);
+                    Width = 500;
+                    Height = 350;
+                    txtHistory.Text  = "PC Time: "  + TimeSpan.FromSeconds(mPCTime).ToString(@"hh\:mm") + "\r\n";
+                    txtHistory.Text += "Work   : "  + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm") + "\r\n";
+                    txtHistory.Text += "Percent:  " + (mWorkingTime*100/mPCTime).ToString() + "%\r\n";
+                    txtHistory.Text += "----------------------------------------\r\n";
+                    var orderedList = mListAppTime.OrderByDescending(kv => kv.Value);
+                    foreach (var kv in orderedList)
+                    {
+                        txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
+                    }
+                    CreateMask();
                 }
                 Screen screen = Screen.FromPoint(Cursor.Position);
-                Location = new Point(screen.WorkingArea.Left, screen.WorkingArea.Top);
-                Width = screen.WorkingArea.Width;
-                Height = screen.WorkingArea.Height;
-                txtHistory.Text = "";
-                var orderedList = mListAppTime.OrderByDescending(x => x.Value);
-                foreach (var kv in orderedList)
-                {
-                    txtHistory.Text += "● " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
-                }
+                int x = (screen.WorkingArea.Width - Width) / 2 + screen.WorkingArea.Left;
+                int y = (screen.WorkingArea.Height - Height) / 2 + screen.WorkingArea.Top;
+                Location = new Point(x, y);
             }
         }
 
@@ -143,6 +185,7 @@ namespace Working_Reminder
             {
                 if (mListAppTime.ContainsKey(curApp) == false) mListAppTime.Add(curApp, 0);
                 mListAppTime[curApp]++;
+                mPCTime++;
             }
             if (mPreMousePos == Cursor.Position.X) mPauseTime++;
             else

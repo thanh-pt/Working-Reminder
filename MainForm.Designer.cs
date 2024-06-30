@@ -83,20 +83,20 @@
             this.btnCheckinMask.AutoSize = true;
             this.btnCheckinMask.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnCheckinMask.ForeColor = System.Drawing.Color.Black;
-            this.btnCheckinMask.Location = new System.Drawing.Point(317, 267);
+            this.btnCheckinMask.Location = new System.Drawing.Point(14, 38);
             this.btnCheckinMask.Name = "btnCheckinMask";
             this.btnCheckinMask.Size = new System.Drawing.Size(458, 108);
-            this.btnCheckinMask.TabIndex = 2;
+            this.btnCheckinMask.TabIndex = 0;
             this.btnCheckinMask.Text = "Check-in!";
             this.btnCheckinMask.Click += new System.EventHandler(this.btnCheckinMask_Click);
             // 
             // btnCheckin
             // 
             this.btnCheckin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCheckin.Location = new System.Drawing.Point(449, 379);
+            this.btnCheckin.Location = new System.Drawing.Point(146, 130);
             this.btnCheckin.Name = "btnCheckin";
             this.btnCheckin.Size = new System.Drawing.Size(94, 23);
-            this.btnCheckin.TabIndex = 5;
+            this.btnCheckin.TabIndex = 1;
             this.btnCheckin.Text = "I\'m Working";
             this.btnCheckin.UseVisualStyleBackColor = true;
             this.btnCheckin.Visible = false;
@@ -105,10 +105,10 @@
             // btnRelax
             // 
             this.btnRelax.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRelax.Location = new System.Drawing.Point(549, 379);
+            this.btnRelax.Location = new System.Drawing.Point(246, 130);
             this.btnRelax.Name = "btnRelax";
             this.btnRelax.Size = new System.Drawing.Size(94, 23);
-            this.btnRelax.TabIndex = 6;
+            this.btnRelax.TabIndex = 2;
             this.btnRelax.Text = "Relax!";
             this.btnRelax.UseVisualStyleBackColor = true;
             this.btnRelax.Visible = false;
@@ -118,27 +118,28 @@
             // 
             this.txtHistory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtHistory.BackColor = System.Drawing.SystemColors.Control;
-            this.txtHistory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtHistory.Enabled = false;
-            this.txtHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.txtHistory.Location = new System.Drawing.Point(436, 370);
+            this.txtHistory.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.txtHistory.Location = new System.Drawing.Point(32, 156);
             this.txtHistory.Multiline = true;
             this.txtHistory.Name = "txtHistory";
             this.txtHistory.ReadOnly = true;
-            this.txtHistory.Size = new System.Drawing.Size(221, 150);
-            this.txtHistory.TabIndex = 7;
-            this.txtHistory.Text = "● 00:00:00    Hello\r\n";
+            this.txtHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtHistory.Size = new System.Drawing.Size(416, 143);
+            this.txtHistory.TabIndex = 0;
+            this.txtHistory.Text = "PC Time: 00:00\r\nWork   : 00:00\r\nPercent:  100%\r\n---------------------------------" +
+    "-------\r\n- 00:00:15\tdevenv\r\n- 00:00:12\tvlc\r\n- 00:00:02\tWorking Reminder\r\n- 00:00" +
+    ":02\tFoxitPDFReader\r\n- 00:00:01\tIdle";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1090, 677);
+            this.ClientSize = new System.Drawing.Size(484, 311);
             this.ControlBox = false;
-            this.Controls.Add(this.txtHistory);
-            this.Controls.Add(this.btnCheckinMask);
             this.Controls.Add(this.btnRelax);
             this.Controls.Add(this.btnCheckin);
+            this.Controls.Add(this.txtHistory);
+            this.Controls.Add(this.btnCheckinMask);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
