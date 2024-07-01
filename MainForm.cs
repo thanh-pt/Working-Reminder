@@ -113,6 +113,21 @@ namespace Working_Reminder
             }
         }
 
+        private void loadHistory()
+        {
+            //💻 00:00  ~  ⛏ 00:00  ~  👌 100%
+            if (mPCTime == 0) return;
+            txtHistory.Text = "💻 " + TimeSpan.FromSeconds(mPCTime).ToString(@"hh\:mm") + "  ~  ";
+            txtHistory.Text += "⛏ " + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm") + "  ~  ";
+            txtHistory.Text += "👌 " + (mWorkingTime * 100 / mPCTime).ToString() + "%\r\n";
+            txtHistory.Text += "----------------------------------------\r\n";
+            var orderedList = mListAppTime.OrderByDescending(kv => kv.Value);
+            foreach (var kv in orderedList)
+            {
+                txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
+            }
+        }
+
         private void updateHMI()
         {
             if (mWorkState != WorkState.None)
@@ -128,19 +143,19 @@ namespace Working_Reminder
                 }
                 if (mWorkState == WorkState.Relax)
                 {
-                    Text = "Relax(" + mRelaxCount.ToString() + ")  "
-                           + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss");
+                    Text = "🎵 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss") + " / "
+                                 + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm\:ss");
                     return;
                 }
                 if (mWorkState == WorkState.OtherWork)
                 {
-                    Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss") + "/"
+                    Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss") + " / "
                                  + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm\:ss");
                     return;
                 }
                 if (mWorkState == WorkState.Work || mWorkState == WorkState.OtherWork)
                 {
-                    Text = "💲💲💲 " + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm\:ss");
+                    Text = "⛏ " + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm\:ss") + " ➝ 💰";
                 }
             }
             else
@@ -152,15 +167,6 @@ namespace Working_Reminder
                     mOldLocation = Location;
                     Width = 500;
                     Height = 350;
-                    txtHistory.Text  = "PC Time: "  + TimeSpan.FromSeconds(mPCTime).ToString(@"hh\:mm") + "\r\n";
-                    txtHistory.Text += "Work   : "  + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm") + "\r\n";
-                    txtHistory.Text += "Percent:  " + (mWorkingTime*100/mPCTime).ToString() + "%\r\n";
-                    txtHistory.Text += "----------------------------------------\r\n";
-                    var orderedList = mListAppTime.OrderByDescending(kv => kv.Value);
-                    foreach (var kv in orderedList)
-                    {
-                        txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
-                    }
                     CreateMask();
                 }
                 Screen screen = Screen.FromPoint(Cursor.Position);
@@ -229,6 +235,11 @@ namespace Working_Reminder
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            loadHistory();
         }
     }
 }

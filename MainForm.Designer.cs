@@ -81,11 +81,11 @@
             // 
             this.btnCheckinMask.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCheckinMask.AutoSize = true;
-            this.btnCheckinMask.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.btnCheckinMask.Font = new System.Drawing.Font("Consolas", 68F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnCheckinMask.ForeColor = System.Drawing.Color.Black;
-            this.btnCheckinMask.Location = new System.Drawing.Point(14, 38);
+            this.btnCheckinMask.Location = new System.Drawing.Point(-7, 25);
             this.btnCheckinMask.Name = "btnCheckinMask";
-            this.btnCheckinMask.Size = new System.Drawing.Size(458, 108);
+            this.btnCheckinMask.Size = new System.Drawing.Size(495, 107);
             this.btnCheckinMask.TabIndex = 0;
             this.btnCheckinMask.Text = "Check-in!";
             this.btnCheckinMask.Click += new System.EventHandler(this.btnCheckinMask_Click);
@@ -93,7 +93,7 @@
             // btnCheckin
             // 
             this.btnCheckin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCheckin.Location = new System.Drawing.Point(146, 130);
+            this.btnCheckin.Location = new System.Drawing.Point(146, 116);
             this.btnCheckin.Name = "btnCheckin";
             this.btnCheckin.Size = new System.Drawing.Size(94, 23);
             this.btnCheckin.TabIndex = 1;
@@ -105,7 +105,7 @@
             // btnRelax
             // 
             this.btnRelax.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRelax.Location = new System.Drawing.Point(246, 130);
+            this.btnRelax.Location = new System.Drawing.Point(246, 116);
             this.btnRelax.Name = "btnRelax";
             this.btnRelax.Size = new System.Drawing.Size(94, 23);
             this.btnRelax.TabIndex = 2;
@@ -119,16 +119,16 @@
             this.txtHistory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtHistory.BackColor = System.Drawing.SystemColors.Control;
             this.txtHistory.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.txtHistory.Location = new System.Drawing.Point(32, 156);
+            this.txtHistory.Location = new System.Drawing.Point(32, 142);
             this.txtHistory.Multiline = true;
             this.txtHistory.Name = "txtHistory";
             this.txtHistory.ReadOnly = true;
             this.txtHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtHistory.Size = new System.Drawing.Size(416, 143);
+            this.txtHistory.Size = new System.Drawing.Size(416, 157);
             this.txtHistory.TabIndex = 0;
-            this.txtHistory.Text = "PC Time: 00:00\r\nWork   : 00:00\r\nPercent:  100%\r\n---------------------------------" +
-    "-------\r\n- 00:00:15\tdevenv\r\n- 00:00:12\tvlc\r\n- 00:00:02\tWorking Reminder\r\n- 00:00" +
-    ":02\tFoxitPDFReader\r\n- 00:00:01\tIdle";
+            this.txtHistory.Text = "💻 00:00  ~  ⛏ 00:00  ~  👌 100%\r\n----------------------------------------\r\n- 00:" +
+    "00:15\tdevenv\r\n- 00:00:12\tvlc\r\n- 00:00:02\tWorking Reminder\r\n- 00:00:02\tFoxitPDFRe" +
+    "ader\r\n- 00:00:01\tIdle";
             // 
             // MainForm
             // 
@@ -140,15 +140,16 @@
             this.Controls.Add(this.btnCheckin);
             this.Controls.Add(this.txtHistory);
             this.Controls.Add(this.btnCheckinMask);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "💲💲💲 00:00:00";
+            this.Text = "⛏ 00:00:00 ➝ 💰";
             this.TopMost = true;
+            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
