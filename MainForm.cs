@@ -16,17 +16,14 @@ namespace Working_Reminder
     {
         int mPreMousePos = 0;
 
+        DataMgr dataMgr;
         WorkState mWorkState = WorkState.Work;
-        Dictionary<string, int> mListAppTime = new Dictionary<string, int>();
 
         int mRelaxCount = 0;
         int mCheckinCount = 0;
 
         int mPauseTime = 0;
         int mTempWork = 0;
-        int mOtherAppTime = 0;
-        int mWorkingTime = 0;
-        int mPCTime = 0;
         int mTimer25m = 0;
         int _1MIN = 60;
         int _5MIN = 300;
@@ -43,6 +40,15 @@ namespace Working_Reminder
             _5MIN = 10;
             _25MIN = 15;
 #endif
+        }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            dataMgr = new DataMgr();
+            dataMgr.loadData();
+            foreach (var kv in dataMgr.mAllData)
+            {
+                listDate.Items.Add(kv.Key);
+            }
         }
         private void btnCheckin_Click(object sender, EventArgs e)
         {
@@ -113,15 +119,15 @@ namespace Working_Reminder
             }
         }
 
-        private void loadHistory()
+        private void loadHistory(string dateStr)
         {
             //💻 00:00  ~  ⛏ 00:00  ~  👌 100%
-            if (mPCTime == 0) return;
-            txtHistory.Text = "💻 " + TimeSpan.FromSeconds(mPCTime).ToString(@"hh\:mm") + "  ~  ";
-            txtHistory.Text += "⛏ " + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm") + "  ~  ";
-            txtHistory.Text += "👌 " + (mWorkingTime * 100 / mPCTime).ToString() + "%\r\n";
+            if (dataMgr.mAllData[dateStr].PCTime == 0) return;
+            txtHistory.Text = "💻 " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].PCTime).ToString(@"hh\:mm\:ss") + "  ~  ";
+            txtHistory.Text += "⛏ " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].WorkTime).ToString(@"hh\:mm\:ss") + "  ~  ";
+            txtHistory.Text += "👌 " + (dataMgr.mAllData[dateStr].WorkTime * 100 / dataMgr.mAllData[dateStr].PCTime).ToString() + "%\r\n";
             txtHistory.Text += "----------------------------------------\r\n";
-            var orderedList = mListAppTime.OrderByDescending(kv => kv.Value);
+            var orderedList = dataMgr.mAllData[dateStr].LstUsedApp.OrderByDescending(kv => kv.Value);
             foreach (var kv in orderedList)
             {
                 txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
@@ -144,18 +150,18 @@ namespace Working_Reminder
                 if (mWorkState == WorkState.Relax)
                 {
                     Text = "🎵 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss") + " / "
-                                 + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm\:ss");
+                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss");
                     return;
                 }
                 if (mWorkState == WorkState.OtherWork)
                 {
                     Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss") + " / "
-                                 + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm\:ss");
+                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss");
                     return;
                 }
                 if (mWorkState == WorkState.Work || mWorkState == WorkState.OtherWork)
                 {
-                    Text = "⛏ " + TimeSpan.FromSeconds(mWorkingTime).ToString(@"hh\:mm\:ss") + " ➝ 💰";
+                    Text = "⛏ " + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss") + " ➝ 💰";
                 }
             }
             else
@@ -168,6 +174,8 @@ namespace Working_Reminder
                     Width = 500;
                     Height = 350;
                     CreateMask();
+                    loadHistory(dataMgr.mTodayStr);
+                    dataMgr.storeData();
                 }
                 Screen screen = Screen.FromPoint(Cursor.Position);
                 int x = (screen.WorkingArea.Width - Width) / 2 + screen.WorkingArea.Left;
@@ -180,7 +188,6 @@ namespace Working_Reminder
         {
             if (mWorkState == WorkState.None)
             {
-                mOtherAppTime = 0;
                 updateHMI();
                 return;
             }
@@ -189,9 +196,9 @@ namespace Working_Reminder
             bool bWorkingAppFg = isWorkingApp(curApp);
             if (mPauseTime < _5MIN)
             {
-                if (mListAppTime.ContainsKey(curApp) == false) mListAppTime.Add(curApp, 0);
-                mListAppTime[curApp]++;
-                mPCTime++;
+                if (dataMgr.mData.LstUsedApp.ContainsKey(curApp) == false) dataMgr.mData.LstUsedApp.Add(curApp, 0);
+                dataMgr.mData.LstUsedApp[curApp]++;
+                dataMgr.mData.PCTime++;
             }
             if (mPreMousePos == Cursor.Position.X) mPauseTime++;
             else
@@ -199,9 +206,6 @@ namespace Working_Reminder
                 mPreMousePos = Cursor.Position.X;
                 mPauseTime = 0;
             }
-
-            if (bWorkingAppFg == false) mOtherAppTime++;
-            else mOtherAppTime = 0;
 
             if (mWorkState == WorkState.Relax || mWorkState == WorkState.OtherWork) mTimer25m--;
 
@@ -216,7 +220,7 @@ namespace Working_Reminder
             }
             else if (mWorkState == WorkState.OtherWork)
             {
-                mWorkingTime++;
+                dataMgr.mData.WorkTime++;
                 // Check timer 25
                 if (mTimer25m < 0) mWorkState = WorkState.None;
                 if (bWorkingAppFg) mWorkState = WorkState.Work;
@@ -224,8 +228,11 @@ namespace Working_Reminder
             else if (mWorkState == WorkState.Work)
             {
                 // Check pause timer
-                mWorkingTime++;
-                if (mOtherAppTime > _25MIN) mWorkState = WorkState.None;
+                dataMgr.mData.WorkTime++;
+
+                if (bWorkingAppFg == false) mTimer25m++;
+                else mTimer25m = 0;
+                if (mTimer25m > _25MIN) mWorkState = WorkState.None;
                 if (mPauseTime > _5MIN) mWorkState = WorkState.None;
             }
 
@@ -237,9 +244,19 @@ namespace Working_Reminder
             this.Close();
         }
 
-        private void MainForm_SizeChanged(object sender, EventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            loadHistory();
+            dataMgr.storeData();
+        }
+
+        private void listDate_Click(object sender, EventArgs e)
+        {
+            if (listDate.SelectedItem == null)
+            {
+                loadHistory(dataMgr.mTodayStr);
+                return;
+            }
+            loadHistory(listDate.SelectedItem.ToString());
         }
     }
 }

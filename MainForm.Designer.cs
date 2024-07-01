@@ -39,6 +39,7 @@
             this.btnCheckin = new System.Windows.Forms.Button();
             this.btnRelax = new System.Windows.Forms.Button();
             this.txtHistory = new System.Windows.Forms.TextBox();
+            this.listDate = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,16 +120,26 @@
             this.txtHistory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtHistory.BackColor = System.Drawing.SystemColors.Control;
             this.txtHistory.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.txtHistory.Location = new System.Drawing.Point(32, 142);
+            this.txtHistory.Location = new System.Drawing.Point(159, 142);
             this.txtHistory.Multiline = true;
             this.txtHistory.Name = "txtHistory";
             this.txtHistory.ReadOnly = true;
             this.txtHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtHistory.Size = new System.Drawing.Size(416, 157);
+            this.txtHistory.Size = new System.Drawing.Size(313, 160);
             this.txtHistory.TabIndex = 0;
-            this.txtHistory.Text = "💻 00:00  ~  ⛏ 00:00  ~  👌 100%\r\n----------------------------------------\r\n- 00:" +
-    "00:15\tdevenv\r\n- 00:00:12\tvlc\r\n- 00:00:02\tWorking Reminder\r\n- 00:00:02\tFoxitPDFRe" +
-    "ader\r\n- 00:00:01\tIdle";
+            this.txtHistory.Text = "💻 00:00:00  ~  ⛏ 00:00:00  ~  👌 100%\r\n----------------------------------------\r" +
+    "\n- 00:00:15\tdevenv\r\n- 00:00:12\tvlc\r\n- 00:00:02\tWorking Reminder\r\n- 00:00:02\tFoxi" +
+    "tPDFReader\r\n- 00:00:01\tIdle";
+            // 
+            // listDate
+            // 
+            this.listDate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listDate.FormattingEnabled = true;
+            this.listDate.Location = new System.Drawing.Point(11, 142);
+            this.listDate.Name = "listDate";
+            this.listDate.Size = new System.Drawing.Size(142, 160);
+            this.listDate.TabIndex = 3;
+            this.listDate.Click += new System.EventHandler(this.listDate_Click);
             // 
             // MainForm
             // 
@@ -138,6 +149,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnRelax);
             this.Controls.Add(this.btnCheckin);
+            this.Controls.Add(this.listDate);
             this.Controls.Add(this.txtHistory);
             this.Controls.Add(this.btnCheckinMask);
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
@@ -149,7 +161,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "⛏ 00:00:00 ➝ 💰";
             this.TopMost = true;
-            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -166,6 +179,7 @@
         private System.Windows.Forms.Button btnRelax;
         private System.Windows.Forms.ToolStripMenuItem reqRelaxToolStripMenuItem;
         private System.Windows.Forms.TextBox txtHistory;
+        private System.Windows.Forms.ListBox listDate;
     }
 }
 
