@@ -30,6 +30,9 @@ namespace Working_Reminder
         int _5MIN = 300;
         int _25MIN = 1500;
 
+        int MAX_WIDTH = 500;
+        int MAX_HEIGHT = 315;
+        bool mReqClose = false;
         Point mOldLocation = new Point();
         Dictionary<int, Control> mListWorkPanel = new Dictionary<int, Control>();
         Dictionary<int, Control> mListRelaxPanel = new Dictionary<int, Control>();
@@ -167,7 +170,7 @@ namespace Working_Reminder
                 var orderedList = dataMgr.mAllData[dateStr].ListUsedApp.OrderByDescending(kv => kv.Value);
                 foreach (var kv in orderedList)
                 {
-                    txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
+                    txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\.ss") + "\t" + kv.Key + "\r\n";
                 }
             }
             else
@@ -212,20 +215,20 @@ namespace Working_Reminder
                 }
                 if (mWorkState == WorkState.Relax)
                 {
-                    Text = "🎵 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss") + " / "
-                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss");
+                    Text = "🎵 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\.ss") + " / "
+                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm");
                     return;
                 }
                 if (mWorkState == WorkState.OtherWork)
                 {
-                    Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss") + " / "
-                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss");
+                    Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\.ss") + " / "
+                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm");
                     return;
                 }
                 if (mWorkState == WorkState.Work)
                 {
-                    Text = "⛏ " + TimeSpan.FromSeconds(mDpWkSs).ToString(@"mm\:ss") + " / "
-                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss");
+                    Text = "⛏ " + TimeSpan.FromSeconds(mDpWkSs).ToString(@"mm\.ss") + " / "
+                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm");
                 }
             }
             else
@@ -235,8 +238,8 @@ namespace Working_Reminder
                 {
                     ShowInTaskbar = true;
                     mOldLocation = Location;
-                    Width = 500;
-                    Height = 315;
+                    Width = MAX_WIDTH;
+                    Height = MAX_HEIGHT;
                     CreateMask();
                     loadHistory(dataMgr.mTodayStr);
                     dataMgr.storeData();
@@ -317,11 +320,27 @@ namespace Working_Reminder
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            mReqClose = true;
+            Close();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (mReqClose == false)
+            {
+                e.Cancel = true;
+                if (Width < MAX_WIDTH)
+                {
+                    Width = MAX_WIDTH;
+                    Height = MAX_HEIGHT;
+                    listDate_Click(sender, e);
+                }
+                else if (mWorkState != WorkState.None)
+                {
+                    Width = 0;
+                    Height = 0;
+                }
+            }
             dataMgr.storeData();
         }
 

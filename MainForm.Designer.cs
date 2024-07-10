@@ -196,8 +196,8 @@
             this.txtHistory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtHistory.Size = new System.Drawing.Size(299, 102);
             this.txtHistory.TabIndex = 0;
-            this.txtHistory.Text = "- 00:00:15\tdevenv\r\n- 00:00:12\tvlc\r\n- 00:00:02\tWorking Reminder\r\n- 00:00:02\tFoxitP" +
-    "DFReader\r\n- 00:00:01\tIdle";
+            this.txtHistory.Text = "- 00:00.15\tdevenv\r\n- 00:00.12\tvlc\r\n- 00:00.02\tWorking Reminder\r\n- 00:00.02\tFoxitP" +
+    "DFReader\r\n- 00:00.01\tIdle";
             // 
             // listDate
             // 
@@ -911,7 +911,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 275);
-            this.ControlBox = false;
             this.Controls.Add(this.lbPerformance);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.btnRelax);
@@ -922,10 +921,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(150, 0);
             this.Name = "MainForm";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "⛏ 00:00 / 00:00:00";
+            this.Text = "⛏ 00.00 / 00:00";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
