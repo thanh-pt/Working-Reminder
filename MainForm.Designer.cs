@@ -42,6 +42,7 @@
             this.listDate = new System.Windows.Forms.ListBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lbNoBlockData = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -90,25 +91,24 @@
             this.wk8 = new System.Windows.Forms.Panel();
             this.rlx7 = new System.Windows.Forms.Panel();
             this.wk7 = new System.Windows.Forms.Panel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panelBg = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.panel16 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelBg = new System.Windows.Forms.Panel();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lbPerformance = new System.Windows.Forms.Label();
-            this.lbNoBlockData = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -295,6 +295,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "TimeBlock";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // lbNoBlockData
+            // 
+            this.lbNoBlockData.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.lbNoBlockData.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbNoBlockData.Location = new System.Drawing.Point(10, 40);
+            this.lbNoBlockData.Name = "lbNoBlockData";
+            this.lbNoBlockData.Size = new System.Drawing.Size(283, 59);
+            this.lbNoBlockData.TabIndex = 11;
+            this.lbNoBlockData.Text = "No Data";
+            this.lbNoBlockData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label16
             // 
@@ -712,156 +723,15 @@
             this.wk7.Size = new System.Drawing.Size(13, 30);
             this.wk7.TabIndex = 0;
             // 
-            // tabPage2
+            // panel17
             // 
-            this.tabPage2.Controls.Add(this.txtHistory);
-            this.tabPage2.Location = new System.Drawing.Point(4, 4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(305, 134);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "History";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // panelBg
-            // 
-            this.panelBg.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panelBg.BackColor = System.Drawing.Color.Transparent;
-            this.panelBg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelBg.Location = new System.Drawing.Point(9, 38);
-            this.panelBg.Name = "panelBg";
-            this.panelBg.Size = new System.Drawing.Size(15, 62);
-            this.panelBg.TabIndex = 0;
-            // 
-            // panel3
-            // 
-            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Location = new System.Drawing.Point(27, 38);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(15, 62);
-            this.panel3.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Location = new System.Drawing.Point(45, 38);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(15, 62);
-            this.panel4.TabIndex = 0;
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel5.BackColor = System.Drawing.Color.Transparent;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Location = new System.Drawing.Point(63, 38);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(15, 62);
-            this.panel5.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            this.panel6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel6.BackColor = System.Drawing.Color.Transparent;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Location = new System.Drawing.Point(81, 38);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(15, 62);
-            this.panel6.TabIndex = 0;
-            // 
-            // panel7
-            // 
-            this.panel7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel7.BackColor = System.Drawing.Color.Transparent;
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Location = new System.Drawing.Point(99, 38);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(15, 62);
-            this.panel7.TabIndex = 0;
-            // 
-            // panel8
-            // 
-            this.panel8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel8.BackColor = System.Drawing.Color.Transparent;
-            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Location = new System.Drawing.Point(117, 38);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(15, 62);
-            this.panel8.TabIndex = 0;
-            // 
-            // panel9
-            // 
-            this.panel9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel9.BackColor = System.Drawing.Color.Transparent;
-            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Location = new System.Drawing.Point(135, 38);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(15, 62);
-            this.panel9.TabIndex = 0;
-            // 
-            // panel10
-            // 
-            this.panel10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel10.BackColor = System.Drawing.Color.Transparent;
-            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel10.Location = new System.Drawing.Point(153, 38);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(15, 62);
-            this.panel10.TabIndex = 0;
-            // 
-            // panel11
-            // 
-            this.panel11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel11.BackColor = System.Drawing.Color.Transparent;
-            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel11.Location = new System.Drawing.Point(171, 38);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(15, 62);
-            this.panel11.TabIndex = 0;
-            // 
-            // panel12
-            // 
-            this.panel12.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel12.BackColor = System.Drawing.Color.Transparent;
-            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel12.Location = new System.Drawing.Point(189, 38);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(15, 62);
-            this.panel12.TabIndex = 0;
-            // 
-            // panel13
-            // 
-            this.panel13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel13.BackColor = System.Drawing.Color.Transparent;
-            this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel13.Location = new System.Drawing.Point(207, 38);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(15, 62);
-            this.panel13.TabIndex = 0;
-            // 
-            // panel14
-            // 
-            this.panel14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel14.BackColor = System.Drawing.Color.Transparent;
-            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel14.Location = new System.Drawing.Point(225, 38);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(15, 62);
-            this.panel14.TabIndex = 0;
-            // 
-            // panel15
-            // 
-            this.panel15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel15.BackColor = System.Drawing.Color.Transparent;
-            this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel15.Location = new System.Drawing.Point(243, 38);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(15, 62);
-            this.panel15.TabIndex = 0;
+            this.panel17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel17.BackColor = System.Drawing.Color.Transparent;
+            this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel17.Location = new System.Drawing.Point(279, 38);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(15, 62);
+            this.panel17.TabIndex = 0;
             // 
             // panel16
             // 
@@ -873,15 +743,156 @@
             this.panel16.Size = new System.Drawing.Size(15, 62);
             this.panel16.TabIndex = 0;
             // 
-            // panel17
+            // panel15
             // 
-            this.panel17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel17.BackColor = System.Drawing.Color.Transparent;
-            this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel17.Location = new System.Drawing.Point(279, 38);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(15, 62);
-            this.panel17.TabIndex = 0;
+            this.panel15.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel15.BackColor = System.Drawing.Color.Transparent;
+            this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel15.Location = new System.Drawing.Point(243, 38);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(15, 62);
+            this.panel15.TabIndex = 0;
+            // 
+            // panel14
+            // 
+            this.panel14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel14.BackColor = System.Drawing.Color.Transparent;
+            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel14.Location = new System.Drawing.Point(225, 38);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(15, 62);
+            this.panel14.TabIndex = 0;
+            // 
+            // panel13
+            // 
+            this.panel13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel13.BackColor = System.Drawing.Color.Transparent;
+            this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel13.Location = new System.Drawing.Point(207, 38);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(15, 62);
+            this.panel13.TabIndex = 0;
+            // 
+            // panel12
+            // 
+            this.panel12.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel12.BackColor = System.Drawing.Color.Transparent;
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Location = new System.Drawing.Point(189, 38);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(15, 62);
+            this.panel12.TabIndex = 0;
+            // 
+            // panel11
+            // 
+            this.panel11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel11.BackColor = System.Drawing.Color.Transparent;
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel11.Location = new System.Drawing.Point(171, 38);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(15, 62);
+            this.panel11.TabIndex = 0;
+            // 
+            // panel10
+            // 
+            this.panel10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel10.BackColor = System.Drawing.Color.Transparent;
+            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel10.Location = new System.Drawing.Point(153, 38);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(15, 62);
+            this.panel10.TabIndex = 0;
+            // 
+            // panel9
+            // 
+            this.panel9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel9.BackColor = System.Drawing.Color.Transparent;
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Location = new System.Drawing.Point(135, 38);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(15, 62);
+            this.panel9.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel8.BackColor = System.Drawing.Color.Transparent;
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Location = new System.Drawing.Point(117, 38);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(15, 62);
+            this.panel8.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel7.BackColor = System.Drawing.Color.Transparent;
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Location = new System.Drawing.Point(99, 38);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(15, 62);
+            this.panel7.TabIndex = 0;
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel6.BackColor = System.Drawing.Color.Transparent;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Location = new System.Drawing.Point(81, 38);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(15, 62);
+            this.panel6.TabIndex = 0;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Location = new System.Drawing.Point(63, 38);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(15, 62);
+            this.panel5.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Location = new System.Drawing.Point(45, 38);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(15, 62);
+            this.panel4.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Location = new System.Drawing.Point(27, 38);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(15, 62);
+            this.panel3.TabIndex = 0;
+            // 
+            // panelBg
+            // 
+            this.panelBg.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelBg.BackColor = System.Drawing.Color.Transparent;
+            this.panelBg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBg.Location = new System.Drawing.Point(9, 38);
+            this.panelBg.Name = "panelBg";
+            this.panelBg.Size = new System.Drawing.Size(15, 62);
+            this.panelBg.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.txtHistory);
+            this.tabPage2.Location = new System.Drawing.Point(4, 4);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(305, 134);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "History";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // lbPerformance
             // 
@@ -894,17 +905,6 @@
             this.lbPerformance.Size = new System.Drawing.Size(296, 19);
             this.lbPerformance.TabIndex = 5;
             this.lbPerformance.Text = "💻 00:00  ~  ⛏ 00:00  ~  👌 100%";
-            // 
-            // lbNoBlockData
-            // 
-            this.lbNoBlockData.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.lbNoBlockData.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.lbNoBlockData.Location = new System.Drawing.Point(10, 40);
-            this.lbNoBlockData.Name = "lbNoBlockData";
-            this.lbNoBlockData.Size = new System.Drawing.Size(283, 59);
-            this.lbNoBlockData.TabIndex = 11;
-            this.lbNoBlockData.Text = "No Data";
-            this.lbNoBlockData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -921,12 +921,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(150, 0);
+            this.MinimumSize = new System.Drawing.Size(150, 39);
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "⛏ 00.00 / 00:00";
+            this.Text = "⛏ 00:00 / 00h00";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);

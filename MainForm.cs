@@ -154,8 +154,8 @@ namespace Working_Reminder
             if (dataMgr.mAllData[dateStr].PCTime != 0)
             {
                 //💻 00:00  ~  ⛏ 00:00  ~  👌 100%
-                lbPerformance.Text = "💻 " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].PCTime).ToString(@"hh\:mm") + "  ~  ";
-                lbPerformance.Text += "⛏ " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].WorkTime).ToString(@"hh\:mm") + "  ~  ";
+                lbPerformance.Text = "💻 " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].PCTime).ToString(@"hh\hmm") + "  ~  ";
+                lbPerformance.Text += "⛏ " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].WorkTime).ToString(@"hh\hmm") + "  ~  ";
                 lbPerformance.Text += "👌 " + (dataMgr.mAllData[dateStr].WorkTime * 100 / dataMgr.mAllData[dateStr].PCTime).ToString() + "%\r\n";
             }
             else
@@ -170,7 +170,7 @@ namespace Working_Reminder
                 var orderedList = dataMgr.mAllData[dateStr].ListUsedApp.OrderByDescending(kv => kv.Value);
                 foreach (var kv in orderedList)
                 {
-                    txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\.ss") + "\t" + kv.Key + "\r\n";
+                    txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
                 }
             }
             else
@@ -215,21 +215,18 @@ namespace Working_Reminder
                 }
                 if (mWorkState == WorkState.Relax)
                 {
-                    Text = "🎵 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\.ss") + " / "
-                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm");
-                    return;
+                    Text = "🎵 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss");
                 }
                 if (mWorkState == WorkState.OtherWork)
                 {
-                    Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\.ss") + " / "
-                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm");
-                    return;
+                    Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss");
                 }
                 if (mWorkState == WorkState.Work)
                 {
-                    Text = "⛏ " + TimeSpan.FromSeconds(mDpWkSs).ToString(@"mm\.ss") + " / "
-                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm");
+                    Text = "⛏ " + TimeSpan.FromSeconds(mDpWkSs).ToString(@"mm\:ss");
                 }
+
+                Text  += " / " + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\hmm");
             }
             else
             {
