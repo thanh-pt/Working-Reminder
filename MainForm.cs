@@ -170,7 +170,9 @@ namespace Working_Reminder
                 var orderedList = dataMgr.mAllData[dateStr].ListUsedApp.OrderByDescending(kv => kv.Value);
                 foreach (var kv in orderedList)
                 {
-                    txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
+                    if (kv.Value < 60) break;
+                    if (kv.Value >= 3600) txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\hmm") + "\t" + kv.Key + "\r\n";
+                    else txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"mm\m") + "\t" + kv.Key + "\r\n";
                 }
             }
             else
