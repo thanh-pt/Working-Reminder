@@ -28,7 +28,47 @@ namespace Working_Reminder
                 mAllData.Add(mTodayStr, new DataInfo());
             }
             mData = mAllData[mTodayStr];
-            if (mData.LstUsedApp == null) mData.LstUsedApp = new Dictionary<string, int>();
+            if (mData.ListUsedApp == null) mData.ListUsedApp = new Dictionary<string, int>();
+            if (mData.ListWorkBlock == null)
+            {
+                mData.ListWorkBlock = new Dictionary<int, int>();
+                mData.ListWorkBlock.Add(7 , 0);
+                mData.ListWorkBlock.Add(8 , 0);
+                mData.ListWorkBlock.Add(9 , 0);
+                mData.ListWorkBlock.Add(10, 0);
+                mData.ListWorkBlock.Add(11, 0);
+                mData.ListWorkBlock.Add(12, 0);
+                mData.ListWorkBlock.Add(13, 0);
+                mData.ListWorkBlock.Add(14, 0);
+                mData.ListWorkBlock.Add(15, 0);
+                mData.ListWorkBlock.Add(16, 0);
+                mData.ListWorkBlock.Add(17, 0);
+                mData.ListWorkBlock.Add(18, 0);
+                mData.ListWorkBlock.Add(19, 0);
+                mData.ListWorkBlock.Add(20, 0);
+                mData.ListWorkBlock.Add(21, 0);
+                mData.ListWorkBlock.Add(22, 0);
+            }
+            if (mData.ListRelaxBlock == null)
+            {
+                mData.ListRelaxBlock = new Dictionary<int, int>();
+                mData.ListRelaxBlock.Add(7, 0);
+                mData.ListRelaxBlock.Add(8, 0);
+                mData.ListRelaxBlock.Add(9, 0);
+                mData.ListRelaxBlock.Add(10, 0);
+                mData.ListRelaxBlock.Add(11, 0);
+                mData.ListRelaxBlock.Add(12, 0);
+                mData.ListRelaxBlock.Add(13, 0);
+                mData.ListRelaxBlock.Add(14, 0);
+                mData.ListRelaxBlock.Add(15, 0);
+                mData.ListRelaxBlock.Add(16, 0);
+                mData.ListRelaxBlock.Add(17, 0);
+                mData.ListRelaxBlock.Add(18, 0);
+                mData.ListRelaxBlock.Add(19, 0);
+                mData.ListRelaxBlock.Add(20, 0);
+                mData.ListRelaxBlock.Add(21, 0);
+                mData.ListRelaxBlock.Add(22, 0);
+            }
         }
 
         public void storeData()

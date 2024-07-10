@@ -25,16 +25,52 @@ namespace Working_Reminder
         int mPauseTime = 0;
         int mTempWork = 0;
         int mTimer25m = 0;
+        int mDpWkSs = 0;
         int _1MIN = 60;
         int _5MIN = 300;
         int _25MIN = 1500;
 
         Point mOldLocation = new Point();
+        Dictionary<int, Control> mListWorkPanel = new Dictionary<int, Control>();
+        Dictionary<int, Control> mListRelaxPanel = new Dictionary<int, Control>();
         public MainForm()
         {
             InitializeComponent();
             Width = 0;
             Height = 0;
+            mListWorkPanel.Add(7 , wk7);
+            mListWorkPanel.Add(8 , wk8);
+            mListWorkPanel.Add(9 , wk9);
+            mListWorkPanel.Add(10, wk10);
+            mListWorkPanel.Add(11, wk11);
+            mListWorkPanel.Add(12, wk12);
+            mListWorkPanel.Add(13, wk13);
+            mListWorkPanel.Add(14, wk14);
+            mListWorkPanel.Add(15, wk15);
+            mListWorkPanel.Add(16, wk16);
+            mListWorkPanel.Add(17, wk17);
+            mListWorkPanel.Add(18, wk18);
+            mListWorkPanel.Add(19, wk19);
+            mListWorkPanel.Add(20, wk20);
+            mListWorkPanel.Add(21, wk21);
+            mListWorkPanel.Add(22, wk22);
+
+            mListRelaxPanel.Add(7 , rlx7);
+            mListRelaxPanel.Add(8 , rlx8);
+            mListRelaxPanel.Add(9 , rlx9);
+            mListRelaxPanel.Add(10, rlx10);
+            mListRelaxPanel.Add(11, rlx11);
+            mListRelaxPanel.Add(12, rlx12);
+            mListRelaxPanel.Add(13, rlx13);
+            mListRelaxPanel.Add(14, rlx14);
+            mListRelaxPanel.Add(15, rlx15);
+            mListRelaxPanel.Add(16, rlx16);
+            mListRelaxPanel.Add(17, rlx17);
+            mListRelaxPanel.Add(18, rlx18);
+            mListRelaxPanel.Add(19, rlx19);
+            mListRelaxPanel.Add(20, rlx20);
+            mListRelaxPanel.Add(21, rlx21);
+            mListRelaxPanel.Add(22, rlx22);
 #if DEBUG
             _1MIN = 5;
             _5MIN = 10;
@@ -56,8 +92,6 @@ namespace Working_Reminder
             btnCheckin.Text = "I'm Working (" + mCheckinCount.ToString() + ")";
             mTimer25m = _25MIN;
             mWorkState = WorkState.OtherWork;
-            btnCheckin.Visible = false;
-            btnRelax.Visible = false;
         }
         private void btnRelax_Click(object sender, EventArgs e)
         {
@@ -65,13 +99,6 @@ namespace Working_Reminder
             btnRelax.Text = "Relax(" + mRelaxCount.ToString() + ")";
             mTimer25m = _25MIN;
             mWorkState = WorkState.Relax;
-            btnCheckin.Visible = false;
-            btnRelax.Visible = false;
-        }
-        private void btnCheckinMask_Click(object sender, EventArgs e)
-        {
-            btnCheckin.Visible = true;
-            btnRelax.Visible = true;
         }
 
         private bool isWorkingApp(string appName)
@@ -123,14 +150,28 @@ namespace Working_Reminder
         {
             //💻 00:00  ~  ⛏ 00:00  ~  👌 100%
             if (dataMgr.mAllData[dateStr].PCTime == 0) return;
-            txtHistory.Text = "💻 " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].PCTime).ToString(@"hh\:mm\:ss") + "  ~  ";
-            txtHistory.Text += "⛏ " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].WorkTime).ToString(@"hh\:mm\:ss") + "  ~  ";
-            txtHistory.Text += "👌 " + (dataMgr.mAllData[dateStr].WorkTime * 100 / dataMgr.mAllData[dateStr].PCTime).ToString() + "%\r\n";
-            txtHistory.Text += "----------------------------------------\r\n";
-            var orderedList = dataMgr.mAllData[dateStr].LstUsedApp.OrderByDescending(kv => kv.Value);
+            lbPerformance.Text = "💻 " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].PCTime).ToString(@"hh\:mm") + "  ~  ";
+            lbPerformance.Text += "⛏ " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].WorkTime).ToString(@"hh\:mm") + "  ~  ";
+            lbPerformance.Text += "👌 " + (dataMgr.mAllData[dateStr].WorkTime * 100 / dataMgr.mAllData[dateStr].PCTime).ToString() + "%\r\n";
+            txtHistory.Text = "";
+            var orderedList = dataMgr.mAllData[dateStr].ListUsedApp.OrderByDescending(kv => kv.Value);
             foreach (var kv in orderedList)
             {
                 txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
+            }
+
+            if (dataMgr.mAllData[dateStr].ListWorkBlock == null) return;
+            int blockHeight = panelBg.Height-2;
+            int wrkHeight = 0;
+            int rlxHeight = 0;
+            foreach (var kv in dataMgr.mAllData[dateStr].ListWorkBlock)
+            {
+                wrkHeight = blockHeight * kv.Value / 3600;
+                rlxHeight = blockHeight * dataMgr.mAllData[dateStr].ListRelaxBlock[kv.Key] / 3600;
+                mListWorkPanel[kv.Key].Height = wrkHeight;
+                mListWorkPanel[kv.Key].Location = new Point(mListWorkPanel[kv.Key].Location.X, lb7oclock.Location.Y - wrkHeight - 1);
+                mListRelaxPanel[kv.Key].Height = rlxHeight;
+                mListRelaxPanel[kv.Key].Location = new Point(mListRelaxPanel[kv.Key].Location.X, mListWorkPanel[kv.Key].Location.Y - rlxHeight);
             }
         }
 
@@ -159,9 +200,10 @@ namespace Working_Reminder
                                  + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss");
                     return;
                 }
-                if (mWorkState == WorkState.Work || mWorkState == WorkState.OtherWork)
+                if (mWorkState == WorkState.Work)
                 {
-                    Text = "⛏ " + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss") + " ➝ 💰";
+                    Text = "⛏ " + TimeSpan.FromSeconds(mDpWkSs).ToString(@"mm\:ss") + " / "
+                                 + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\:mm\:ss");
                 }
             }
             else
@@ -196,8 +238,8 @@ namespace Working_Reminder
             bool bWorkingAppFg = isWorkingApp(curApp);
             if (mPauseTime < _5MIN)
             {
-                if (dataMgr.mData.LstUsedApp.ContainsKey(curApp) == false) dataMgr.mData.LstUsedApp.Add(curApp, 0);
-                dataMgr.mData.LstUsedApp[curApp]++;
+                if (dataMgr.mData.ListUsedApp.ContainsKey(curApp) == false) dataMgr.mData.ListUsedApp.Add(curApp, 0);
+                dataMgr.mData.ListUsedApp[curApp]++;
                 dataMgr.mData.PCTime++;
             }
             if (mPreMousePos == Cursor.Position.X) mPauseTime++;
@@ -211,24 +253,36 @@ namespace Working_Reminder
 
             if (mWorkState == WorkState.Relax)
             {
+                if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 22) dataMgr.mData.ListRelaxBlock[DateTime.Now.Hour]++;
                 // Check timer 25
                 if (mTimer25m < 0) mWorkState = WorkState.None;
                 // Check work in relax timer 1
                 if (bWorkingAppFg) mTempWork++;
                 else mTempWork = 0;
-                if (mTempWork > _1MIN) mWorkState = WorkState.Work;
+                if (mTempWork > _1MIN)
+                {
+                    mDpWkSs = 0;
+                    mWorkState = WorkState.Work;
+                }
             }
             else if (mWorkState == WorkState.OtherWork)
             {
                 dataMgr.mData.WorkTime++;
+                if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 22)  dataMgr.mData.ListWorkBlock[DateTime.Now.Hour]++;
                 // Check timer 25
                 if (mTimer25m < 0) mWorkState = WorkState.None;
-                if (bWorkingAppFg) mWorkState = WorkState.Work;
+                if (mPauseTime > _5MIN) mWorkState = WorkState.None;
+                if (bWorkingAppFg)
+                {
+                    mDpWkSs = 0;
+                    mWorkState = WorkState.Work;
+                }
             }
             else if (mWorkState == WorkState.Work)
             {
-                // Check pause timer
                 dataMgr.mData.WorkTime++;
+                if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 22)  dataMgr.mData.ListWorkBlock[DateTime.Now.Hour]++;
+                mDpWkSs++;
 
                 if (bWorkingAppFg == false) mTimer25m++;
                 else mTimer25m = 0;
