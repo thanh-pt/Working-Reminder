@@ -108,6 +108,7 @@
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.lbPerformance = new System.Windows.Forms.Label();
+            this.lbNoBlockData = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -222,6 +223,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lbNoBlockData);
             this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.label14);
@@ -893,6 +895,17 @@
             this.lbPerformance.TabIndex = 5;
             this.lbPerformance.Text = "💻 00:00  ~  ⛏ 00:00  ~  👌 100%";
             // 
+            // lbNoBlockData
+            // 
+            this.lbNoBlockData.Font = new System.Drawing.Font("Consolas", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.lbNoBlockData.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbNoBlockData.Location = new System.Drawing.Point(10, 40);
+            this.lbNoBlockData.Name = "lbNoBlockData";
+            this.lbNoBlockData.Size = new System.Drawing.Size(283, 59);
+            this.lbNoBlockData.TabIndex = 11;
+            this.lbNoBlockData.Text = "No Data";
+            this.lbNoBlockData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1006,6 +1019,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panelBg;
         private System.Windows.Forms.Label lbPerformance;
+        private System.Windows.Forms.Label lbNoBlockData;
     }
 }
 

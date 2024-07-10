@@ -148,30 +148,52 @@ namespace Working_Reminder
 
         private void loadHistory(string dateStr)
         {
-            //💻 00:00  ~  ⛏ 00:00  ~  👌 100%
-            if (dataMgr.mAllData[dateStr].PCTime == 0) return;
-            lbPerformance.Text = "💻 " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].PCTime).ToString(@"hh\:mm") + "  ~  ";
-            lbPerformance.Text += "⛏ " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].WorkTime).ToString(@"hh\:mm") + "  ~  ";
-            lbPerformance.Text += "👌 " + (dataMgr.mAllData[dateStr].WorkTime * 100 / dataMgr.mAllData[dateStr].PCTime).ToString() + "%\r\n";
-            txtHistory.Text = "";
-            var orderedList = dataMgr.mAllData[dateStr].ListUsedApp.OrderByDescending(kv => kv.Value);
-            foreach (var kv in orderedList)
+            if (dataMgr.mAllData[dateStr].PCTime != 0)
             {
-                txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
+                //💻 00:00  ~  ⛏ 00:00  ~  👌 100%
+                lbPerformance.Text = "💻 " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].PCTime).ToString(@"hh\:mm") + "  ~  ";
+                lbPerformance.Text += "⛏ " + TimeSpan.FromSeconds(dataMgr.mAllData[dateStr].WorkTime).ToString(@"hh\:mm") + "  ~  ";
+                lbPerformance.Text += "👌 " + (dataMgr.mAllData[dateStr].WorkTime * 100 / dataMgr.mAllData[dateStr].PCTime).ToString() + "%\r\n";
+            }
+            else
+            {
+                lbPerformance.Text = "NoData";
+            }
+            
+
+            if (dataMgr.mAllData[dateStr].ListUsedApp != null)
+            {
+                txtHistory.Text = "";
+                var orderedList = dataMgr.mAllData[dateStr].ListUsedApp.OrderByDescending(kv => kv.Value);
+                foreach (var kv in orderedList)
+                {
+                    txtHistory.Text += "- " + TimeSpan.FromSeconds(kv.Value).ToString(@"hh\:mm\:ss") + "\t" + kv.Key + "\r\n";
+                }
+            }
+            else
+            {
+                txtHistory.Text = "NoData";
             }
 
-            if (dataMgr.mAllData[dateStr].ListWorkBlock == null) return;
-            int blockHeight = panelBg.Height-2;
-            int wrkHeight = 0;
-            int rlxHeight = 0;
-            foreach (var kv in dataMgr.mAllData[dateStr].ListWorkBlock)
+            if (dataMgr.mAllData[dateStr].ListWorkBlock != null)
             {
-                wrkHeight = blockHeight * kv.Value / 3600;
-                rlxHeight = blockHeight * dataMgr.mAllData[dateStr].ListRelaxBlock[kv.Key] / 3600;
-                mListWorkPanel[kv.Key].Height = wrkHeight;
-                mListWorkPanel[kv.Key].Location = new Point(mListWorkPanel[kv.Key].Location.X, lb7oclock.Location.Y - wrkHeight - 1);
-                mListRelaxPanel[kv.Key].Height = rlxHeight;
-                mListRelaxPanel[kv.Key].Location = new Point(mListRelaxPanel[kv.Key].Location.X, mListWorkPanel[kv.Key].Location.Y - rlxHeight);
+                lbNoBlockData.Visible = false;
+                int blockHeight = panelBg.Height - 2;
+                int wrkHeight = 0;
+                int rlxHeight = 0;
+                foreach (var kv in dataMgr.mAllData[dateStr].ListWorkBlock)
+                {
+                    wrkHeight = blockHeight * kv.Value / 3600;
+                    rlxHeight = blockHeight * dataMgr.mAllData[dateStr].ListRelaxBlock[kv.Key] / 3600;
+                    mListWorkPanel[kv.Key].Height = wrkHeight;
+                    mListWorkPanel[kv.Key].Location = new Point(mListWorkPanel[kv.Key].Location.X, lb7oclock.Location.Y - wrkHeight - 1);
+                    mListRelaxPanel[kv.Key].Height = rlxHeight;
+                    mListRelaxPanel[kv.Key].Location = new Point(mListRelaxPanel[kv.Key].Location.X, mListWorkPanel[kv.Key].Location.Y - rlxHeight);
+                }
+            }
+            else
+            {
+                lbNoBlockData.Visible = true;
             }
         }
 
@@ -214,7 +236,7 @@ namespace Working_Reminder
                     ShowInTaskbar = true;
                     mOldLocation = Location;
                     Width = 500;
-                    Height = 350;
+                    Height = 315;
                     CreateMask();
                     loadHistory(dataMgr.mTodayStr);
                     dataMgr.storeData();
