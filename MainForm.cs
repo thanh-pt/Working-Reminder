@@ -30,7 +30,7 @@ namespace Working_Reminder
         int _5MIN = 300;
         int _25MIN = 1500;
 
-        int MAX_WIDTH = 500;
+        int MAX_WIDTH = 550;
         int MAX_HEIGHT = 315;
         bool mReqClose = false;
         Point mOldLocation = new Point();
@@ -235,6 +235,7 @@ namespace Working_Reminder
                 // Create Notification
                 if (ShowInTaskbar == false)
                 {
+                    isWatchingVideo.Checked = false;
                     ShowInTaskbar = true;
                     mOldLocation = Location;
                     Width = MAX_WIDTH;
@@ -295,7 +296,11 @@ namespace Working_Reminder
                 if (DateTime.Now.Hour >= 7 && DateTime.Now.Hour <= 22)  dataMgr.mData.ListWorkBlock[DateTime.Now.Hour]++;
                 // Check timer 25
                 if (mTimer25m < 0) mWorkState = WorkState.None;
-                if (mPauseTime > _5MIN) mWorkState = WorkState.None;
+                if (isWatchingVideo.Checked == false)
+                {
+                    if (mPauseTime > _5MIN) mWorkState = WorkState.None;
+                }
+                else mPauseTime = 0;
                 if (bWorkingAppFg)
                 {
                     mDpWkSs = 0;

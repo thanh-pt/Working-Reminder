@@ -109,6 +109,7 @@
             this.panelBg = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lbPerformance = new System.Windows.Forms.Label();
+            this.isWatchingVideo = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -156,7 +157,7 @@
             this.btnCheckinMask.AutoSize = true;
             this.btnCheckinMask.Font = new System.Drawing.Font("Consolas", 68F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnCheckinMask.ForeColor = System.Drawing.Color.Black;
-            this.btnCheckinMask.Location = new System.Drawing.Point(0, 0);
+            this.btnCheckinMask.Location = new System.Drawing.Point(25, 0);
             this.btnCheckinMask.Name = "btnCheckinMask";
             this.btnCheckinMask.Size = new System.Drawing.Size(495, 107);
             this.btnCheckinMask.TabIndex = 0;
@@ -165,9 +166,9 @@
             // btnCheckin
             // 
             this.btnCheckin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCheckin.Location = new System.Drawing.Point(386, 110);
+            this.btnCheckin.Location = new System.Drawing.Point(411, 110);
             this.btnCheckin.Name = "btnCheckin";
-            this.btnCheckin.Size = new System.Drawing.Size(94, 23);
+            this.btnCheckin.Size = new System.Drawing.Size(119, 23);
             this.btnCheckin.TabIndex = 1;
             this.btnCheckin.Text = "I\'m Working";
             this.btnCheckin.UseVisualStyleBackColor = true;
@@ -176,9 +177,9 @@
             // btnRelax
             // 
             this.btnRelax.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRelax.Location = new System.Drawing.Point(386, 139);
+            this.btnRelax.Location = new System.Drawing.Point(411, 139);
             this.btnRelax.Name = "btnRelax";
-            this.btnRelax.Size = new System.Drawing.Size(94, 23);
+            this.btnRelax.Size = new System.Drawing.Size(119, 23);
             this.btnRelax.TabIndex = 2;
             this.btnRelax.Text = "Relax!";
             this.btnRelax.UseVisualStyleBackColor = true;
@@ -203,9 +204,9 @@
             // 
             this.listDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listDate.FormattingEnabled = true;
-            this.listDate.Location = new System.Drawing.Point(4, 110);
+            this.listDate.Location = new System.Drawing.Point(3, 110);
             this.listDate.Name = "listDate";
-            this.listDate.Size = new System.Drawing.Size(67, 160);
+            this.listDate.Size = new System.Drawing.Size(93, 160);
             this.listDate.TabIndex = 3;
             this.listDate.Click += new System.EventHandler(this.listDate_Click);
             // 
@@ -215,7 +216,7 @@
             this.tabControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Location = new System.Drawing.Point(72, 110);
+            this.tabControl.Location = new System.Drawing.Point(97, 110);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(313, 160);
@@ -900,17 +901,29 @@
             this.lbPerformance.AutoSize = true;
             this.lbPerformance.BackColor = System.Drawing.Color.White;
             this.lbPerformance.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.lbPerformance.Location = new System.Drawing.Point(79, 119);
+            this.lbPerformance.Location = new System.Drawing.Point(104, 119);
             this.lbPerformance.Name = "lbPerformance";
             this.lbPerformance.Size = new System.Drawing.Size(296, 19);
             this.lbPerformance.TabIndex = 5;
             this.lbPerformance.Text = "💻 00:00  ~  ⛏ 00:00  ~  👌 100%";
             // 
+            // isWatchingVideo
+            // 
+            this.isWatchingVideo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.isWatchingVideo.AutoSize = true;
+            this.isWatchingVideo.Location = new System.Drawing.Point(414, 168);
+            this.isWatchingVideo.Name = "isWatchingVideo";
+            this.isWatchingVideo.Size = new System.Drawing.Size(110, 17);
+            this.isWatchingVideo.TabIndex = 6;
+            this.isWatchingVideo.Text = "Watching Video";
+            this.isWatchingVideo.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 275);
+            this.ClientSize = new System.Drawing.Size(534, 275);
+            this.Controls.Add(this.isWatchingVideo);
             this.Controls.Add(this.lbPerformance);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.btnRelax);
@@ -1021,6 +1034,7 @@
         private System.Windows.Forms.Panel panelBg;
         private System.Windows.Forms.Label lbPerformance;
         private System.Windows.Forms.Label lbNoBlockData;
+        private System.Windows.Forms.CheckBox isWatchingVideo;
     }
 }
 
