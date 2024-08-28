@@ -110,10 +110,14 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lbPerformance = new System.Windows.Forms.Label();
             this.isWatchingVideo = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTimeCount = new System.Windows.Forms.Label();
+            this.txtExpand = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -153,11 +157,10 @@
             // 
             // btnCheckinMask
             // 
-            this.btnCheckinMask.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCheckinMask.AutoSize = true;
             this.btnCheckinMask.Font = new System.Drawing.Font("Consolas", 68F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnCheckinMask.ForeColor = System.Drawing.Color.Black;
-            this.btnCheckinMask.Location = new System.Drawing.Point(25, 0);
+            this.btnCheckinMask.Location = new System.Drawing.Point(34, 17);
             this.btnCheckinMask.Name = "btnCheckinMask";
             this.btnCheckinMask.Size = new System.Drawing.Size(495, 107);
             this.btnCheckinMask.TabIndex = 0;
@@ -165,8 +168,7 @@
             // 
             // btnCheckin
             // 
-            this.btnCheckin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCheckin.Location = new System.Drawing.Point(411, 110);
+            this.btnCheckin.Location = new System.Drawing.Point(420, 127);
             this.btnCheckin.Name = "btnCheckin";
             this.btnCheckin.Size = new System.Drawing.Size(119, 23);
             this.btnCheckin.TabIndex = 1;
@@ -176,8 +178,7 @@
             // 
             // btnRelax
             // 
-            this.btnRelax.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRelax.Location = new System.Drawing.Point(411, 139);
+            this.btnRelax.Location = new System.Drawing.Point(420, 156);
             this.btnRelax.Name = "btnRelax";
             this.btnRelax.Size = new System.Drawing.Size(119, 23);
             this.btnRelax.TabIndex = 2;
@@ -202,9 +203,8 @@
             // 
             // listDate
             // 
-            this.listDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listDate.FormattingEnabled = true;
-            this.listDate.Location = new System.Drawing.Point(3, 110);
+            this.listDate.Location = new System.Drawing.Point(12, 127);
             this.listDate.Name = "listDate";
             this.listDate.Size = new System.Drawing.Size(93, 160);
             this.listDate.TabIndex = 3;
@@ -213,10 +213,9 @@
             // tabControl
             // 
             this.tabControl.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.tabControl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Location = new System.Drawing.Point(97, 110);
+            this.tabControl.Location = new System.Drawing.Point(106, 127);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(313, 160);
@@ -897,11 +896,10 @@
             // 
             // lbPerformance
             // 
-            this.lbPerformance.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbPerformance.AutoSize = true;
             this.lbPerformance.BackColor = System.Drawing.Color.White;
             this.lbPerformance.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.lbPerformance.Location = new System.Drawing.Point(104, 119);
+            this.lbPerformance.Location = new System.Drawing.Point(113, 136);
             this.lbPerformance.Name = "lbPerformance";
             this.lbPerformance.Size = new System.Drawing.Size(296, 19);
             this.lbPerformance.TabIndex = 5;
@@ -909,48 +907,87 @@
             // 
             // isWatchingVideo
             // 
-            this.isWatchingVideo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.isWatchingVideo.AutoSize = true;
-            this.isWatchingVideo.Location = new System.Drawing.Point(414, 168);
+            this.isWatchingVideo.Location = new System.Drawing.Point(423, 185);
             this.isWatchingVideo.Name = "isWatchingVideo";
             this.isWatchingVideo.Size = new System.Drawing.Size(110, 17);
             this.isWatchingVideo.TabIndex = 6;
             this.isWatchingVideo.Text = "Watching Video";
             this.isWatchingVideo.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnCheckinMask);
+            this.panel1.Controls.Add(this.listDate);
+            this.panel1.Controls.Add(this.isWatchingVideo);
+            this.panel1.Controls.Add(this.btnCheckin);
+            this.panel1.Controls.Add(this.lbPerformance);
+            this.panel1.Controls.Add(this.btnRelax);
+            this.panel1.Controls.Add(this.tabControl);
+            this.panel1.Location = new System.Drawing.Point(3, 48);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(550, 315);
+            this.panel1.TabIndex = 7;
+            // 
+            // txtTimeCount
+            // 
+            this.txtTimeCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTimeCount.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtTimeCount.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTimeCount.Location = new System.Drawing.Point(0, 0);
+            this.txtTimeCount.Name = "txtTimeCount";
+            this.txtTimeCount.Size = new System.Drawing.Size(709, 30);
+            this.txtTimeCount.TabIndex = 8;
+            this.txtTimeCount.Text = "⛏ 00:00 / 00h00";
+            this.txtTimeCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtTimeCount.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            // 
+            // txtExpand
+            // 
+            this.txtExpand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExpand.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtExpand.Location = new System.Drawing.Point(709, 0);
+            this.txtExpand.Name = "txtExpand";
+            this.txtExpand.Size = new System.Drawing.Size(20, 30);
+            this.txtExpand.TabIndex = 11;
+            this.txtExpand.Text = "✔️";
+            this.txtExpand.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtExpand.Click += new System.EventHandler(this.txtExpand_Click);
+            this.txtExpand.MouseLeave += new System.EventHandler(this.txtExpand_MouseLeave);
+            this.txtExpand.MouseHover += new System.EventHandler(this.txtExpand_MouseHover);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 275);
-            this.Controls.Add(this.isWatchingVideo);
-            this.Controls.Add(this.lbPerformance);
-            this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.btnRelax);
-            this.Controls.Add(this.btnCheckin);
-            this.Controls.Add(this.listDate);
-            this.Controls.Add(this.btnCheckinMask);
+            this.ClientSize = new System.Drawing.Size(729, 483);
+            this.ControlBox = false;
+            this.Controls.Add(this.txtExpand);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.txtTimeCount);
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(150, 39);
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "⛏ 00:00 / 00h00";
+            this.Text = "Working Reminder";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.contextMenuStrip1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1035,6 +1072,9 @@
         private System.Windows.Forms.Label lbPerformance;
         private System.Windows.Forms.Label lbNoBlockData;
         private System.Windows.Forms.CheckBox isWatchingVideo;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label txtTimeCount;
+        private System.Windows.Forms.Label txtExpand;
     }
 }
 

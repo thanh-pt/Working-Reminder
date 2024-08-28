@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Working_Reminder
@@ -31,16 +32,16 @@ namespace Working_Reminder
         int _25MIN = 1500;
 
         int MAX_WIDTH = 550;
-        int MAX_HEIGHT = 315;
-        bool mReqClose = false;
+        int MAX_HEIGHT = 360;
+
+        int MIN_WIDTH = 170;
+        int MIN_HEIGHT = 30;
         Point mOldLocation = new Point();
         Dictionary<int, Control> mListWorkPanel = new Dictionary<int, Control>();
         Dictionary<int, Control> mListRelaxPanel = new Dictionary<int, Control>();
         public MainForm()
         {
             InitializeComponent();
-            Width = 0;
-            Height = 0;
             mListWorkPanel.Add(7 , wk7);
             mListWorkPanel.Add(8 , wk8);
             mListWorkPanel.Add(9 , wk9);
@@ -80,6 +81,15 @@ namespace Working_Reminder
             _25MIN = 15;
 #endif
         }
+        #region move handle
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+        #endregion
         private void MainForm_Load(object sender, EventArgs e)
         {
             dataMgr = new DataMgr();
@@ -88,6 +98,12 @@ namespace Working_Reminder
             {
                 listDate.Items.Add(kv.Key);
             }
+            Width = MIN_WIDTH;
+            Height = MIN_HEIGHT;
+
+            int x = Screen.PrimaryScreen.WorkingArea.Width * 2/3;
+            int y = 0;
+            Location = new Point(x, y);
         }
         private void btnCheckin_Click(object sender, EventArgs e)
         {
@@ -210,25 +226,25 @@ namespace Working_Reminder
                 {
                     ShowInTaskbar = false;
                     WindowState = FormWindowState.Normal;
-                    Width = 0;
-                    Height = 0;
+                    Width = MIN_WIDTH;
+                    Height = MIN_HEIGHT;
                     Location = mOldLocation;
                     RemoveMasks();
                 }
                 if (mWorkState == WorkState.Relax)
                 {
-                    Text = "🎵 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss");
+                    txtTimeCount.Text = "🎵 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss");
                 }
                 if (mWorkState == WorkState.OtherWork)
                 {
-                    Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss");
+                    txtTimeCount.Text = "🍅 " + TimeSpan.FromSeconds(mTimer25m).ToString(@"mm\:ss");
                 }
                 if (mWorkState == WorkState.Work)
                 {
-                    Text = "⛏ " + TimeSpan.FromSeconds(mDpWkSs).ToString(@"mm\:ss");
+                    txtTimeCount.Text = "⛏ " + TimeSpan.FromSeconds(mDpWkSs).ToString(@"mm\:ss");
                 }
 
-                Text  += " / " + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\hmm");
+                txtTimeCount.Text += " / " + TimeSpan.FromSeconds(dataMgr.mData.WorkTime).ToString(@"hh\hmm");
             }
             else
             {
@@ -324,27 +340,12 @@ namespace Working_Reminder
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mReqClose = true;
+            dataMgr.storeData();
             Close();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (mReqClose == false)
-            {
-                e.Cancel = true;
-                if (Width < MAX_WIDTH)
-                {
-                    Width = MAX_WIDTH;
-                    Height = MAX_HEIGHT;
-                    listDate_Click(sender, e);
-                }
-                else if (mWorkState != WorkState.None)
-                {
-                    Width = 0;
-                    Height = 0;
-                }
-            }
             dataMgr.storeData();
         }
 
@@ -356,6 +357,40 @@ namespace Working_Reminder
                 return;
             }
             loadHistory(listDate.SelectedItem.ToString());
+        }
+
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void txtExpand_Click(object sender, EventArgs e)
+        {
+            if (Width < MAX_WIDTH)
+            {
+                Width = MAX_WIDTH;
+                Height = MAX_HEIGHT;
+                listDate_Click(sender, e);
+            }
+            else if (mWorkState != WorkState.None)
+            {
+                Width = MIN_WIDTH;
+                Height = MIN_HEIGHT;
+            }
+        }
+
+        private void txtExpand_MouseHover(object sender, EventArgs e)
+        {
+            txtExpand.BackColor = Color.WhiteSmoke;
+        }
+
+        private void txtExpand_MouseLeave(object sender, EventArgs e)
+        {
+            txtExpand.BackColor = Color.Gainsboro;
         }
     }
 }
